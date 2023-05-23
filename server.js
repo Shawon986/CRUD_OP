@@ -49,6 +49,18 @@ app.put("/users/:id",(req,res)=>{
         res.status(404).json({Message:"User not found"});
 
     }
+});
+
+app.delete("/users/:id",(req,res)=>{
+    const id= req.params.id;
+    const userIndex= users.findIndex((u)=>u.id==id);
+    if(userIndex){
+        users.splice(userIndex,1);
+        res.json(users)
+    }else{
+        res.status(404).json({Message:"User not found"});
+
+    }
 })
 
 app.get("/users",(req,res)=>{

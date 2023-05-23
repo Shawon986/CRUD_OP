@@ -11,12 +11,14 @@ app.get("/", (req,res)=>{
     res.json({Message:"Welcome to my app"});
 });
 
-let users =[]
+let users =[];
+let lastId = 0;
 
 //! Api to create user
 
 app.post("/users", (req,res)=>{
     const user =req.body;
+    user.id = ++lastId;
     users.push(user);
     res.status(201).json(user);
 

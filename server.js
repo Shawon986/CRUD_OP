@@ -31,9 +31,24 @@ app.get("/users/:id",(req,res)=>{
     if(user){
         res.json(user);
     }else{
-        res.status(404).json({Message:"User not found"})
+        res.status(404).json({Message:"User not found"});
     }
     
+});
+
+app.put("/users/:id",(req,res)=>{
+    const id= req.params.id;
+    const body = req.body;
+    const user= users.find((u)=>u.id==id);
+    if(user){
+        user.fname =body.fname;
+        user.lname =body.lname;
+        res.json(user)
+
+    }else{
+        res.status(404).json({Message:"User not found"});
+
+    }
 })
 
 app.get("/users",(req,res)=>{

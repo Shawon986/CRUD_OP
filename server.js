@@ -2,8 +2,21 @@ require('dotenv').config()
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
+const mongoose = require('mongoose');
 
 app.use(bodyParser.json());
+const uri= process.env.MONGODB_URI;
+mongoose.connect(uri,{useNewUrlParser :true})
+  .then(() => console.log('Connected!'));
+
+mongoose.connection.on('connected', function () {  
+    console.log('Mongoose default connection open  ' );
+  }); 
+  
+  // If the connection throws an error
+mongoose.connection.on('error',function (err) {  
+    console.log('Mongoose default connection error: ' );
+  }); 
 
 //! Api to check connection
 

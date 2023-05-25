@@ -1,4 +1,4 @@
-
+require('dotenv').config()
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
@@ -52,7 +52,7 @@ app.put("/users/:id",(req,res)=>{
 });
 
 app.delete("/users/:id",(req,res)=>{
-    const id= req.params.id;
+    const id= req.params.id;                                           
     const userIndex= users.findIndex((u)=>u.id==id);
     if(userIndex){
         users.splice(userIndex,1);
@@ -67,7 +67,7 @@ app.get("/users",(req,res)=>{
     res.json(users);
 })
  
-const port = 6000;
+const port = process.env.PORT; 
 app.listen(port, () => {
     console.log(`App is running on port ${port}`)
-});
+});  
